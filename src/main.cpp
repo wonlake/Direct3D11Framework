@@ -36,7 +36,7 @@ ID3D11ShaderResourceView*	g_lpSRView3		   = NULL;
 ID3D11ShaderResourceView*	g_lpSRViewCube	   = NULL;
 
 CBillboardText*				g_pText					  = NULL;
-KMZLoader*					g_pKmzLoader			  = NULL;
+//KMZLoader*					g_pKmzLoader			  = NULL;
 CXXModel*					g_pXXModel				  = NULL;
 NormalRenderState*			g_pNormalRenderState	  = NULL;
 SolidwireShader*			g_pSolidwireShader		  = NULL;
@@ -155,7 +155,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 					//	if( IsWindowVisible(hwndAnimDlg) )
 					//		ShowWindow( hwndAnimDlg, SW_HIDE );
 					//}
-					if( g_pKmzLoader == NULL )
+			/*		if( g_pKmzLoader == NULL )
 					{
 						g_pKmzLoader = new KMZLoader( 
 							g_Direct3D.m_lpDevice, g_Direct3D.m_lpContext );
@@ -168,12 +168,12 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 						float fUnit = g_pKmzLoader->GetTranslateUnit();
 						g_Camera.SetWheelUnit( fUnit );
 						g_Camera.SetNearFarPlane( fUnit * 0.5f, fUnit * 100 );
-					}
+					} */
 					break;
 				}
 			case 1:
 				{
-					SAFE_DELETE( g_pKmzLoader );
+					//SAFE_DELETE( g_pKmzLoader );
 					if( g_pXXModel == NULL )
 					{
 						g_pXXModel = new CXXModel( 
@@ -337,17 +337,18 @@ VOID DrawScene( ID3D11DeviceContext* lpContext )
 		lpContext->OMSetDepthStencilState( g_pNormalRenderState->m_lpDepthStencilState, 0 );
 	}
 
-	if( g_pKmzLoader )
+	//if( g_pKmzLoader )
+	if(false)
 	{
 		if( GetAsyncKeyState('B') & 0x8000f )
 		{
-			g_pKmzLoader->ShowBoundingBox( TRUE );
+		//	g_pKmzLoader->ShowBoundingBox( TRUE );
 		}
 		if( GetAsyncKeyState('N') & 0x8000f )
 		{
-			g_pKmzLoader->ShowBoundingBox( FALSE );
+		//	g_pKmzLoader->ShowBoundingBox( FALSE );
 		}
-		g_pKmzLoader->Render( &matVW, &matP );
+		//g_pKmzLoader->Render( &matVW, &matP );
 	}
 	else if( g_pXXModel )
 	{
@@ -575,7 +576,7 @@ VOID LoadPSShaderResources( ID3D11Device* lpDevice,
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
 	D3D11_TEXTURE2D_DESC desc;
 	ZeroMemory( &srvDesc, sizeof(D3D11_SHADER_RESOURCE_VIEW_DESC) );
-	D3DX11CreateTextureFromFile( lpDevice, TEXT("..\\GameMedia\\textures\\test.jpg"), NULL, NULL, (ID3D11Resource**)&lpTexture, NULL );
+	D3DX11CreateTextureFromFile( lpDevice, TEXT("..\\Res\\NineGrids.png"), NULL, NULL, (ID3D11Resource**)&lpTexture, NULL );
 	lpTexture->GetDesc( &desc );
 
 	srvDesc.Format					  = desc.Format;
@@ -649,7 +650,7 @@ BOOL ReleaseResources( VOID )
 	SAFE_RELEASE( g_lpSRView1 );
 
 	SAFE_DELETE( g_pText );
-	SAFE_DELETE( g_pKmzLoader );
+	//SAFE_DELETE( g_pKmzLoader );
 	SAFE_DELETE( g_pXXModel );
 	SAFE_DELETE( g_pNormalRenderState );
 

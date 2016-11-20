@@ -1,7 +1,7 @@
 //
 // Copyright (C) Mei Jun 2011
 //
-
+/*
 #include "KMZLoader.h"
 #include "Utility.h"
 
@@ -2031,3 +2031,4 @@ BOOL KMZLoader::CreateRenderState()
 	else
 		return TRUE;	
 }
+*/

@@ -4,6 +4,7 @@
 
 #pragma once
 
+/*
 #define NO_BOOST
 #include <dae.h>
 #include <dom.h>
@@ -218,4 +219,4 @@ public:
 
 	static PSConstantBuffer s_PSBuffer;
 };
-
+*/
